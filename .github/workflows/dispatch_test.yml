@@ -1,0 +1,12 @@
+name: Testing Dispatch
+on:
+  repository_dispatch:
+    types: [deployment-event]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    environment: TESTING
+    steps:
+      - name: Receive args
+        run: |
+          echo $ {{github.event.client_payload.commit_sha}}

@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Receive args
         run: |
-          echo $ {{github.event.client_payload.commit_sha}}
+          echo ${{github.event.client_payload.commit_sha}}

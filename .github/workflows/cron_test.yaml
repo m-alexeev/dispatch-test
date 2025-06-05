@@ -1,18 +1,19 @@
 name: Testing cron
 on:
   schedule:
-    - cron: "*/15 * * * *"
-    - cron: "*/30 * * * *"
+    - cron: "*/5 * * * *"
+    - cron: "*/6 * * * *"
 jobs:
   test_cron:
     runs-on: ubuntu-latest
     steps:
       - name: Testing
         run: |
-          if [ "${{ github.event.schedule }}" = "*/15 * * * *" ]; then
+          if [ "${{ github.event.schedule }}" = "*/5 * * * *" ]; then
             echo "Minute"
-          elif [ "${{ github.event.schedule }}" = "*/30* * * *" ]; then
+          elif [ "${{ github.event.schedule }}" = "*/6 * * * *" ]; then
             echo "2 Minute"
           else
             echo "Unknown schedule"
           fi
+          echo "Finished test"

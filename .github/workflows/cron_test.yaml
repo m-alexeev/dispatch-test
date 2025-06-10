@@ -1,19 +1,17 @@
 name: Testing cron
 on:
-  schedule:
-    - cron: "*/5 * * * *"
-    - cron: "*/6 * * * *"
+  push:
+    branches: [master]
+
 jobs:
   test_cron:
     runs-on: ubuntu-latest
     steps:
-      - name: Testing
+      - name: Setting Env
         run: |
-          if [ "${{ github.event.schedule }}" = "*/5 * * * *" ]; then
-            echo "Minute"
-          elif [ "${{ github.event.schedule }}" = "*/6 * * * *" ]; then
-            echo "2 Minute"
-          else
-            echo "Unknown schedule"
-          fi
-          echo "Finished test"
+          echo "TEST=Test" >> $GITHUB_ENV
+          echo "TEST_2=Test" >> $GITHUB_ENV
+      - name: Viewing Env
+        run: |
+          echo $TEST
+          echo ${{env.TEST_2}}

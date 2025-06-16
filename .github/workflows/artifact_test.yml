@@ -28,7 +28,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{env.BUILD_BRANCH}}-version
-          path: artifacts/download/${{env.BUILD_BRANCH}}-version
+          path: artifacts/download
       - name: Save build version
         run: |
           cat "artifacts/download/${{env.BUILD_BRANCH}}-version"

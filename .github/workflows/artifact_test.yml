@@ -1,0 +1,37 @@
+name: Testing Artifacts
+on:
+  push:
+    branches: [master]
+
+env:
+  IMAGE_TAG: "eb12f32"
+  BUILD_BRANCH: "sprint"
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Creating File
+        run: |
+          echo $IMAGE_TAG >> artifacts/${{env.BUILD_BRANCH}}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.BUILD_BRANCH}}-version
+          path: artifacts/${{env.BUILD_BRANCH}}
+
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{env.BUILD_BRANCH}}-version
+          path: artifacts/download/${{env.BUILD_BRANCH}}-version
+      - name: Save build version
+        run: |
+          cat "artifacts/download/${{env.BUILD_BRANCH}}-version"
+          echo "build=$(cat artifacts/download/${{env.BUILD_BRANCH}}-version)" >> $GITHUB_ENV
+
+      - name: Validate version
+        run: echo $build

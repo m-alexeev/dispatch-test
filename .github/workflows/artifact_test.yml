@@ -12,7 +12,8 @@ jobs:
     steps:
       - name: Creating File
         run: |
-          echo $IMAGE_TAG >> artifacts/${{env.BUILD_BRANCH}}
+          mkdir artifacts
+          echo $IMAGE_TAG > artifacts/${{env.BUILD_BRANCH}}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4

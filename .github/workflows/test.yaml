@@ -1,7 +1,6 @@
 name: Testing cron
 on:
   workflow_call:
-
 jobs:
   test_call:
     runs-on: ubuntu-latest

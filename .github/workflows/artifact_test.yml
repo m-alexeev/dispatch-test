@@ -32,7 +32,7 @@ jobs:
           path: artifacts/download
       - name: Save build version
         run: |
-          cat "artifacts/download/${{env.BUILD_BRANCH}}-version"
+          cat "./artifacts/download/${{env.BUILD_BRANCH}}-version"
           echo "build=$(cat artifacts/download/${{env.BUILD_BRANCH}}-version)" >> $GITHUB_ENV
 
       - name: Validate version

@@ -22,6 +22,7 @@ jobs:
           path: artifacts/${{env.BUILD_BRANCH}}
 
   download:
+    needs: [upload]
     runs-on: ubuntu-latest
     steps:
       - name: Download
